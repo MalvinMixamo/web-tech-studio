@@ -29,7 +29,6 @@ export default function DetailCourse(){
     if (!course) return <p>Data nggak ketemu!</p>
     return (
         <div className="min-h-screen bg-white text-[#1a1a1a] font-sans">
-            {/* Navigation */}
             <nav className="border-b border-gray-100 sticky top-0 bg-white/80 backdrop-blur-md z-50">
             <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
                 <h1 className="text-xl font-bold text-blue-600 tracking-tight cursor-pointer" onClick={() => window.history.back()}>
