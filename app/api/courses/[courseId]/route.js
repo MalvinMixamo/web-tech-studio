@@ -38,3 +38,14 @@ export async function DELETE(request, { params }) {
         return NextResponse.json(err, {status:500})
     }
 }
+
+export async function GET(req, {params}) {
+    try{
+        const { courseId } = await params
+        const [course] = await db.query(`SELECT users.fullname, course.* FROM users JOIN course ON user_uuid = users.uuid WHERE course.id = ?`, [courseId])
+
+        return NextResponse.json(course[0], {status: 200})
+    }catch(e){
+        return NextResponse.json(err, {status:500})
+    }
+}
