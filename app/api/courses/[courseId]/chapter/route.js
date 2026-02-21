@@ -5,9 +5,9 @@ export async function GET(request, { params }) {
     const { courseId } = await params
     try{
         const [rows] = await db.query(
-            `SELECT course.title AS nama_kursus, chapter.* FROM course 
-             LEFT JOIN chapter ON course.id = chapter.course_id 
-             WHERE course.id = ?`, 
+            `SELECT course.title AS course_name, chapter.* FROM course 
+             JOIN chapter ON course.id = chapter.course_id 
+             WHERE course.id = ? ORDER BY ordinal ASC`, 
             [courseId]
         )
         return NextResponse.json(rows, {status: 200})

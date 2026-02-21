@@ -2,7 +2,7 @@ import { NextResponse } from 'next/server';
 import { db } from '@/lib/db';
 
 export async function POST(request, { params }) {
-    const { lessonId } = params
+    const { lessonId } = await params
     const { userId } = await request.json()
 
     try {
@@ -14,7 +14,7 @@ export async function POST(request, { params }) {
         )
 
         return NextResponse.json({ message: "Progres berhasil disimpan!" }, { status: 200 })
-    } catch (error) {
-        return NextResponse.json({ error: "Gagal menyimpan progres" }, { status: 500 })
+    } catch (err) {
+        return NextResponse.json({ error: "Gagal menyimpan progres", err }, { status: 500 })
     }
 }
