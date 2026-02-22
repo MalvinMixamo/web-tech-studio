@@ -24,13 +24,14 @@ export default function LandingPage() {
     <div className="min-h-screen bg-white text-[#1a1a1a] font-sans">
       <nav className="border-b border-gray-100 sticky top-0 bg-white/80 backdrop-blur-md z-50">
         <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-          <h1 className="text-xl font-bold text-blue-600 tracking-tight">E-LEARN</h1>
+          <h1 className="text-xl font-bold text-blue-600 tracking-tight">Web Tech Studio</h1>
           <div className="flex gap-8 text-sm font-medium align-middle">
             <a href="#" className="hover:text-blue-600 transition py-2">Courses</a>
             <a href="#" className="hover:text-blue-600 transition py-2">Mentors</a>
-            <button className="bg-blue-600 text-white px-5 py-2 rounded-full hover:bg-blue-700 transition">
-              Sign In
-            </button>
+            <Link href="/Login" className='hover:text-blue-600 transition py-2'>Sign In</Link>
+            <Link href="/register" className="bg-blue-600 text-white px-5 py-2 rounded-full hover:bg-blue-700 transition">
+              Sign Up
+            </Link>
           </div>
         </div>
       </nav>
@@ -57,7 +58,7 @@ export default function LandingPage() {
       <main className="max-w-7xl mx-auto px-6 pb-24">
         <div className="flex items-center justify-between mb-12">
           <h3 className="text-2xl font-bold">Kursus Terpopuler</h3>
-          <a href="#" className="text-blue-600 font-medium hover:underline">Lihat Semua</a>
+          <Link href="#" className="text-blue-600 font-medium hover:underline">Lihat Semua</Link>
         </div>
 
         {loading ? (
@@ -71,7 +72,7 @@ export default function LandingPage() {
             {Array.isArray(courses) && courses.map((course) => (
               <div key={course.id} className="group border border-gray-100 rounded-2xl p-4 hover:border-blue-200 hover:shadow-xl hover:shadow-blue-50/50 transition-all duration-300">
                 <div className="aspect-video bg-gray-100 rounded-xl mb-4 overflow-hidden">
-                  <div className="w-full h-full bg-gradient-to-br from-blue-50 to-blue-100 flex items-center justify-center text-blue-300">
+                  <div className="w-full h-full bg-linear-to-br from-blue-50 to-blue-100 flex items-center justify-center text-blue-300">
                     <img src={course.img} alt="" className='w-full h-full object-cover group-hover:scale-110 transition duration-500'/>
                   </div>
                 </div>
