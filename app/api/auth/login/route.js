@@ -23,7 +23,7 @@ export async function POST(request) {
         }, { status: 200 });
         response.cookies.set('token', String(user.uuid), {
             path: '/',
-            httpOnly: true,
+            httpOnly: false,
             maxAge: 60 * 60 * 24
         })
         response.cookies.set('role', String(user.role), {

@@ -2,11 +2,21 @@
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { getCookie } from 'cookies-next'
 
 export default function LandingPage() {
+  const [token, setToken] = useState('')
+  const [role, setRole] = useState('')
+  useEffect(() => {
+    const tkn = getCookie('token')
+    const rl = getCookie('role')
+    setToken(tkn)
+    setRole(rl)
+    console.log("Token ditemukan:", tkn)
+  }, [])
   const [courses, setCourses] = useState([]);
   const [loading, setLoading] = useState(true);
-
+  console.log(token)
   useEffect(() => {
     fetch('/api/courses')
       .then((res) => res.json())
@@ -19,7 +29,6 @@ export default function LandingPage() {
         setLoading(false);
       });
   }, []);
-
   return (
     <div className="min-h-screen bg-white text-[#1a1a1a] font-sans">
       <nav className="border-b border-gray-100 sticky top-0 bg-white/80 backdrop-blur-md z-50">
@@ -28,10 +37,9 @@ export default function LandingPage() {
           <div className="flex gap-8 text-sm font-medium align-middle">
             <a href="#" className="hover:text-blue-600 transition py-2">Courses</a>
             <a href="#" className="hover:text-blue-600 transition py-2">Mentors</a>
-            <Link href="/Login" className='hover:text-blue-600 transition py-2'>Sign In</Link>
-            <Link href="/register" className="bg-blue-600 text-white px-5 py-2 rounded-full hover:bg-blue-700 transition">
-              Sign Up
-            </Link>
+            <Link href="/login" className={`hover:text-blue-600 transition py-2 ${token ? "hidden" : "block"}`}>Sign In</Link>
+            {token ? <Link href={`/dashboard/${role}/${token}`} className="bg-blue-600 text-white px-5 py-2 rounded-full hover:bg-blue-700 transition">Dashboard</Link> : <Link href="/register" className="bg-blue-600 text-white px-5 py-2 rounded-full hover:bg-blue-700 transition">Sign Up</Link>}
+            
           </div>
         </div>
       </nav>

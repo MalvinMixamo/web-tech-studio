@@ -21,7 +21,11 @@ export default function Login(){
         if(res.ok){
             setFormData({ username: '', password: '' })
             alert(`Selamat datang! ${result.fullname}`)
-            router.push(`/dashboard/${result.uuid}`)
+            if (result.role === 'user') {
+                router.push(`/dashboard/user/${result.uuid}`);
+            } else {
+                router.push(`/dashboard/admin/${result.uuid}`);
+            }
         }
     }
     return(
