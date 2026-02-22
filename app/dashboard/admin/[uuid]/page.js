@@ -60,8 +60,8 @@ export default function AdminDashboard() {
                 <Link href="/" className="p-6 text-xl font-bold text-blue-600">Web Tech Studio ADMIN</Link>
                 <nav className="flex-1 px-4 space-y-2">
                 <div className="p-3 bg-blue-50 text-blue-600 rounded-xl font-bold">Manage Courses</div>
-                <div className="p-3 text-gray-400 hover:bg-gray-50 rounded-xl cursor-not-allowed">Students List</div>
-                <div className="p-3 text-gray-400 hover:bg-gray-50 rounded-xl cursor-not-allowed">Reports</div>
+                <div className="p-3 text-gray-400 hover:bg-gray-50 rounded-xl">Students List</div>
+                <div className="p-3 text-gray-400 hover:bg-gray-50 rounded-xl">Reports</div>
                 </nav>
                 <div className="p-4 border-t border-gray-100">
                 <button onClick={handleLogout} className="w-full flex items-center gap-3 p-3 text-red-400 hover:bg-red-50 rounded-xl transition font-medium">
