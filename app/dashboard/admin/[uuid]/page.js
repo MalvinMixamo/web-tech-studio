@@ -81,7 +81,7 @@ export default function AdminDashboard() {
                 </button>
                 </header>
                 <div className="bg-white rounded-3xl border border-gray-100 overflow-scroll w-full shadow-sm">
-                <table className="w-3xl overflow-scroll text-left">
+                <table className="w-3xl md:w-full overflow-scroll text-left">
                     <thead className="bg-gray-50 border-b border-gray-100">
                     <tr>
                         <th className="p-5 font-bold text-gray-500">Judul Kursus</th>
