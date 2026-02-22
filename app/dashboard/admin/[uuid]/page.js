@@ -55,7 +55,7 @@ export default function AdminDashboard() {
     }
 
     return (
-        <div className="min-h-screen bg-[#fcfcfc] flex text-[#1a1a1a]">
+        <div className="h-screen w-full bg-[#fcfcfc] flex text-[#1a1a1a]">
             <aside className="w-64 bg-white border-r border-gray-100 hidden md:flex flex-col h-screen sticky top-0">
                 <Link href="/" className="p-6 text-xl font-bold text-blue-600">Web Tech Studio ADMIN</Link>
                 <nav className="flex-1 px-4 space-y-2">
@@ -70,9 +70,9 @@ export default function AdminDashboard() {
                 </div>
             </aside>
 
-            <div className="flex-1 p-8">
+            <div className="flex-1 p-8 w-full">
                 <header className="flex justify-between items-center mb-10">
-                <h2 className="text-2xl font-bold">Management Kursus 🛠️</h2>
+                <h2 className="text-md font-bold">Management Kursus 🛠️</h2>
                 <button 
                     onClick={() => setShowModal(true)}
                     className="bg-blue-600 text-white px-6 py-3 rounded-2xl font-bold hover:bg-blue-700 transition shadow-lg shadow-blue-100"
@@ -80,10 +80,8 @@ export default function AdminDashboard() {
                     + Tambah Kursus Baru
                 </button>
                 </header>
-
-                {/* Table / List Kursus */}
-                <div className="bg-white rounded-3xl border border-gray-100 overflow-hidden shadow-sm">
-                <table className="w-full text-left">
+                <div className="bg-white rounded-3xl border border-gray-100 overflow-scroll w-full shadow-sm">
+                <table className="w-3xl overflow-scroll text-left">
                     <thead className="bg-gray-50 border-b border-gray-100">
                     <tr>
                         <th className="p-5 font-bold text-gray-500">Judul Kursus</th>
