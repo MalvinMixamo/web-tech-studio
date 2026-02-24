@@ -1,11 +1,23 @@
 'use client'
 import { useParams } from "next/navigation";
+import { NextResponse } from "next/server";
 import { useEffect, useState } from "react";
+import { getCookie } from "cookies-next";
+import { useRouter } from "next/navigation";
 export default function DetailCourse(){
+    const router = useRouter()
     const params = useParams()
     const [course, setCourse] = useState(null)
     const [chapter, setChapter] = useState(null)
     const [loading, setLoading] = useState(true)
+    const [terdaftar, setTerdaftar] = useState(false)
+
+    const [token, setToken] = useState('')
+      useEffect(() => {
+        const tkn = getCookie('token')
+        setToken(tkn)
+        console.log("Token ditemukan:", tkn)
+      }, [])
 
     useEffect(() => {
         const getCourseDetail = async () => {
@@ -25,6 +37,26 @@ export default function DetailCourse(){
         if(params.courseId) getCourseDetail()
     }, [params.courseId])
     console.log(course)
+
+    const handleEnroll = async(e) => {
+        if(!token){
+            router.push('/login')
+        }
+        try{
+            const res = await fetch (`/api/users/${token}/courses`, {
+                method: 'POST',
+                body: JSON.stringify({user_uuid: token,course_id:params.courseId})
+            })
+            if(res.ok){
+                alert('Selamat belajar!')
+                setTerdaftar(true)
+            }if(res.status == 400){
+                alert('kamu udah terdaftar di sini')
+            }
+        }catch(err){
+            return NextResponse.json(err, {status: 500})
+        }
+    }
     if (loading) return <p>Loading bray...</p>
     if (!course) return <p>Data nggak ketemu!</p>
     return (
@@ -34,7 +66,7 @@ export default function DetailCourse(){
                 <h1 className="text-xl font-bold text-blue-600 tracking-tight cursor-pointer" onClick={() => window.history.back()}>
                 ← Web Tech Studio
                 </h1>
-                <button className="bg-blue-600 text-white px-6 py-2 rounded-lg font-medium hover:bg-blue-700 transition shadow-md shadow-blue-100">
+                <button onClick={handleEnroll} className="bg-blue-600 cursor-pointer text-white px-6 py-2 rounded-lg font-medium hover:bg-blue-700 transition shadow-md shadow-blue-100">
                     Enroll Now
                 </button>
             </div>
@@ -89,8 +121,8 @@ export default function DetailCourse(){
                         <span className="text-gray-500 font-medium">Harga Akses</span>
                         <span className="text-2xl font-black text-blue-600">FREE</span>
                     </div>
-                    <button className="w-full bg-blue-600 text-white py-4 rounded-xl font-bold hover:bg-blue-700 transition shadow-lg shadow-blue-100">
-                        Mulai Belajar Sekarang
+                    <button className={`w-full ${terdaftar ? "bg-blue-600 hover:bg-blue-700 transition" : "bg-slate-900"}  text-white py-4 rounded-xl font-bold  shadow-lg shadow-blue-100`}>
+                        {token ? "Mulai Belajar Sekarang" : "Login untuk belajar"}
                     </button>
                     </div>
                 </div>

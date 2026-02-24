@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'next/navigation';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 export default function StudentDashboard() {
     const params = useParams()
@@ -39,7 +40,7 @@ export default function StudentDashboard() {
         <div className="min-h-screen bg-[#fcfcfc] flex text-[#1a1a1a]">
         <aside className="w-64 bg-white border-r border-gray-100 hidden md:flex flex-col sticky top-0 h-screen">
             <div className="p-6">
-            <h1 className="text-xl font-bold text-blue-600 tracking-tight">Web Tech Studio</h1>
+            <Link href='/' className="text-xl font-bold text-blue-600 tracking-tight">Web Tech Studio</Link>
             </div>
             <nav className="flex-1 px-4 space-y-2 mt-4">
             <a href="#" className="flex items-center gap-3 p-3 bg-blue-50 text-blue-600 rounded-xl font-bold">
