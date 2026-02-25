@@ -7,17 +7,18 @@ export async function GET(request, {params}) {
         const sql = `SELECT 
                 c.id AS course_id,
                 c.title AS course_title,
+                c.img AS img,
                 (SELECT COUNT(*) FROM user_progress up 
                  WHERE up.user_uuid = u.uuid 
                  AND up.is_completed = 1 
-                 AND up.lesson_id IN (
-                     SELECT l.id FROM lessons l 
-                     JOIN chapter ch ON l.chapter_id = ch.id 
-                     WHERE ch.course_id = c.id
+                 AND up.chapter_id IN (
+                     SELECT l.id FROM chapter l 
+                     JOIN course ch ON l.course_id = ch.id 
+                     WHERE ch.id = ch.id
                  )) AS completed_lessons,
-                (SELECT COUNT(*) FROM lessons l 
-                 JOIN chapter ch ON l.chapter_id = ch.id 
-                 WHERE ch.course_id = c.id) AS total_lessons
+                (SELECT COUNT(*) FROM chapter l 
+                 JOIN course ch ON l.course_id = ch.id 
+                 WHERE ch.id = c.id) AS total_lessons
             FROM users u
             JOIN enrollments e ON u.uuid = e.user_uuid
             JOIN course c ON e.course_id = c.id
@@ -37,6 +38,7 @@ export async function GET(request, {params}) {
                     title: row.course_title,
                     completed: row.completed_lessons,
                     total: row.total_lessons,
+                    img: row.img,
                     progress_percent: percentage,
                     status: percentage === 100 ? "Selesai" : "Sedang Dipelajari"
                 };

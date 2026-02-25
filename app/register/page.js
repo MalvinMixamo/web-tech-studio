@@ -36,7 +36,7 @@ export default function Register(){
                 <div className="flex flex-row justify-center items-center h-full text-white w-full md:mt-0">
                     <div className=" w-full md:w-1/2 px-5 md:px-0">
                         <h1 className="text-5xl font-bold">Selamat Datang Kembali Bray</h1>
-                        <p className="mt-2 mb-5 text-2xl">Buat Akun terlebih dahulu jika ingin daftar kursus</p>
+                        <p className="mt-2 mb-5 text-2xl">Sudah punya akun bray? Login disini</p>
                         <Link href="/login" className="bg-white px-6 py-3 text-slate-800 hover:bg-gray-50 rounded-md">Sign In</Link>
                     </div>
                 </div>

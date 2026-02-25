@@ -33,9 +33,9 @@ export default function Login(){
             <div className="hidden w-0 md:block md:w-[40%] bg-[url(/background-fill.png)] bg-center bg-cover h-full">
                 <div className="flex flex-row justify-center items-center h-full text-white w-full md:mt-0">
                     <div className=" w-full md:w-1/2 px-5 md:px-0">
-                        <h1 className="text-5xl font-bold">Selamat Datang Kembali Bray</h1>
+                        <h1 className="text-5xl font-bold">Belum Punya Akun Bray?</h1>
                         <p className="mt-2 mb-5 text-2xl">Buat Akun terlebih dahulu jika ingin daftar kursus</p>
-                        <Link href="/register" className="bg-white px-6 py-3 text-slate-800 hover:bg-gray-50 rounded-md">Sign In</Link>
+                        <Link href="/register" className="bg-white px-6 py-3 text-slate-800 hover:bg-gray-50 rounded-md">Sign Up</Link>
                     </div>
                 </div>
             </div>

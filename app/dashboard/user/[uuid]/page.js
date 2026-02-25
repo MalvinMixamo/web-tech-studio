@@ -36,6 +36,7 @@ export default function StudentDashboard() {
             alert(err.message)
         }
     }
+    console.log('enrolled Course : ', enrolledCourses)
     return (
         <div className="min-h-screen bg-[#fcfcfc] flex text-[#1a1a1a]">
         <aside className="w-64 bg-white border-r border-gray-100 hidden md:flex flex-col sticky top-0 h-screen">
@@ -113,9 +114,7 @@ export default function StudentDashboard() {
                 <div className="grid grid-cols-1 gap-4">
                 {enrolledCourses.map(course => (
                     <div key={course.id} className="bg-white p-5 rounded-2xl border border-gray-100 flex items-center gap-6 hover:shadow-lg hover:shadow-gray-100 transition duration-300">
-                    <div className="w-16 h-16 bg-blue-50 rounded-xl flex items-center justify-center text-blue-600 font-bold">
-                        {course.title[0]}
-                    </div>
+                    <img src={course.img}  alt="Gambar" className='w-40 h-auto my-2 rounded-xl' />
                     <div className="flex-1">
                         <h4 className="font-bold text-lg mb-1">{course.title}</h4>
                         <div className="flex items-center gap-4">
